@@ -10,7 +10,5 @@ namespace Transaction.business.Interface
         public int Update(TransactionDomain entity);
         public int Delete(string id);
 
-
-
     }
 }

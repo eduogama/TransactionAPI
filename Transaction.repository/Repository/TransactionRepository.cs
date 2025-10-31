@@ -4,9 +4,9 @@ using Transaction.repository.Queries;
 
 namespace Transaction.repository.Repository
 {
-    public class TransactionRepository : ITransactionRepository
+    public class TransactionRepository(ISqlRepository repository) : ITransactionRepository
     {
-        private readonly SqlRepository repository = new();
+        private readonly ISqlRepository repository = repository;
 
         public List<TransactionDomain> GetAll()
         {

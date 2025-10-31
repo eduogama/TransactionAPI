@@ -1,4 +1,8 @@
 using Microsoft.OpenApi.Models;
+using Transaction.business.Interface;
+using Transaction.repository.Interface;
+using Transaction.repository.Repository;
+using Transaction.business;
 
 namespace Transaction
 {
@@ -20,6 +24,10 @@ namespace Transaction
                 });
             });
 
+            builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+            builder.Services.AddScoped<ITransactionBusiness, TransactionBusiness>();
+            builder.Services.AddScoped<ISqlRepository, SqlRepository>();
+            
             builder.Services.AddOpenApi();
 
             var app = builder.Build();

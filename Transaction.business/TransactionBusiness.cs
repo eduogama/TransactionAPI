@@ -1,12 +1,13 @@
 ﻿using Transaction.business.Interface;
 using Transaction.domain;
+using Transaction.repository.Interface;
 using Transaction.repository.Repository;
 
 namespace Transaction.business
 {
-    public class TransactionBusiness : ITransactionBusiness
+    public class TransactionBusiness(ITransactionRepository transactionRepository) : ITransactionBusiness
     {
-        private readonly TransactionRepository transactionRepository = new();
+        private readonly ITransactionRepository _transactionRepository = transactionRepository;
 
         public List<TransactionDomain> GetAll()
         {

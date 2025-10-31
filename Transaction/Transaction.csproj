@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Transaction.domain\Transaction.domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Testes\" />
+  </ItemGroup>
+
 </Project>

@@ -1,46 +1,47 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Transaction.business;
+using Transaction.business.Interface;
 using Transaction.domain;
 
 namespace Transaction.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TransactionController : Controller
+    public class TransactionController(ITransactionBusiness transactionBusiness) : Controller
     {
+        private readonly ITransactionBusiness _transactionBusiness = transactionBusiness;
 
-        private readonly TransactionBusiness transactionBusiness = new();
         [HttpGet]
-        [Route("GetAll")]
+        [Route("BuscaTodos")]
         public List<TransactionDomain> GetAll()
         {
-            return transactionBusiness.GetAll();
+            return _transactionBusiness.GetAll();
         }
 
         [HttpGet("{transactionID}")]
         public TransactionDomain GetById(string transactionID)
         {
-            return transactionBusiness.GetById(transactionID);
+            return _transactionBusiness.GetById(transactionID);
         }
 
         [HttpPost]
         [Route("Insert")]
         public int Insert(TransactionDomain transactionDomain)
         {
-            return transactionBusiness.Add(transactionDomain);
+            return _transactionBusiness.Add(transactionDomain);
         }
 
         [HttpPut]
         [Route("Update")]
         public int Update(TransactionDomain transactionDomain)
         {
-            return transactionBusiness.Update(transactionDomain);
+            return _transactionBusiness.Update(transactionDomain);
         }
 
         [HttpDelete("{transactionID}")]
         public int Delete(string transactionID)
         {
-            return transactionBusiness.Delete(transactionID);
+            return _transactionBusiness.Delete(transactionID);
         }
     }
 }
